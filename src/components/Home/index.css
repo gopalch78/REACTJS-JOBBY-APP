@@ -1,0 +1,119 @@
+.header-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/home-sm-bg.png');
+  background-size: cover;
+  height: 130vh;
+}
+.home-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  height: 100vh;
+
+  width: 90%;
+  max-width: 1100px;
+}
+@media screen and (min-width: 768px) {
+  .home-container {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 96px;
+  }
+}
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .home-content {
+    display: flex;
+    background-size: cover;
+    align-items: flex-start;
+    margin-left: 10px;
+    flex-direction: column;
+    justify-content: left;
+    margin-bottom: 400px;
+  }
+}
+
+.home-mobile-image {
+  width: 206px;
+}
+@media screen and (min-width: 768px) {
+  .home-mobile-image {
+    display: block;
+  }
+}
+@media screen and (min-width: 768px) {
+  .home-mobile-image {
+    display: none;
+  }
+}
+.home-desktop-image {
+  width: 50%;
+  max-width: 450px;
+  margin-left: 85px;
+}
+@media screen and(min-width: 768px) {
+  .home-desktop-image {
+    display: none;
+  }
+}
+
+.home-heading {
+  font-family: 'Roboto';
+  font-weight: bold;
+  margin-top: 0px;
+  font-size: 80px;
+  text-align: center;
+  color: black;
+}
+
+@media screen and (min-width: 768px) {
+  .home-heading {
+    font-size: 40px;
+    text-align: left;
+    color: white;
+    margin-left: 30px;
+  }
+}
+.home-description {
+  font-family: 'Roboto';
+  font-size: 14px;
+  line-height: 28px;
+  text-align: center;
+  color: black;
+}
+@media screen and (min-width: 768px) {
+  .home-description {
+    font-size: 25px;
+    text-align: left;
+    padding: 10px;
+    color: white;
+    margin-left: 20px;
+  }
+}
+.jobs-button {
+  background-color: #6366f1;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Roboto';
+  color: white;
+  border: none;
+  padding: 12px 12px;
+  border-radius: 6px;
+  margin-top: 20px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 50px;
+}
+@media screen and(min-width: 768px) {
+  .jobs-button {
+    width: 150px;
+    font-size: 16px;
+    margin-right: 30px;
+  }
+}
