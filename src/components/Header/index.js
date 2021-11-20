@@ -15,42 +15,30 @@ const Header = props => {
     history.replace('/login')
   }
   return (
-    <nav className="nav-header">
-      <div className="nav-content">
-        <d className="nav-bar-mobile-container">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
-            alt=" website logo"
-            className="website-logo-image"
-          />
-          <Link to="/">
-            <AiFillHome className="home-icon" />
-          </Link>
-          <Link to="/jobs">
-            <BsFillBriefcaseFill className="briefcase-icon" />
-          </Link>
-          <Link to="/login">
-            <FiLogOut onClick={onClickLogout} className="logout-icon" />
+    <>
+      <nav className="nav-header">
+        <div className="nav-content">
+          <div className="nav-bar-mobile-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
               alt=" website logo"
-              className="website-logo-image"
+              className="website-logo-image-mobile"
             />
             <Link to="/">
-              <AiFillHome />
+              <AiFillHome className="home-icon" />
             </Link>
             <Link to="/jobs">
-              <BsFillBriefcaseFill />
+              <BsFillBriefcaseFill className="briefcase-icon" />
             </Link>
             <Link to="/login">
-              <FiLogOut onClick={onClickLogout} />
+              <FiLogOut onClick={onClickLogout} className="logout-icon" />
             </Link>
           </div>
-          <div className="nav-bar-container">
+          <div className="nav-bar-desktop-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
               alt=" website logo"
-              className="website-logo-image"
+              className="website-logo-image-desktop"
             />
             <ul className="nav-menu">
               <li className="nav-menu-item">
@@ -73,8 +61,8 @@ const Header = props => {
             </button>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   )
 }
 export default withRouter(Header)

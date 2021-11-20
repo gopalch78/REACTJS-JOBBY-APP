@@ -1,0 +1,53 @@
+.main-container {
+  background-color: black;
+}
+.two-container-divider {
+  display: flex;
+  flex-direction: row;
+}
+.side-bar-container {
+  display: flex;
+  flex-direction: column;
+  height: 120vh;
+}
+.input-job-detail-container {
+  height: 120vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-left: 100px;
+}
+.job-profile-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  height: 300px;
+  width: 300px;
+  margin: 40px;
+  padding: 10px;
+  background-size: cover;
+}
+
+.render-profile {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.hr-line {
+  width: 290px;
+  line-height: 10px;
+  margin-left: 80px;
+}
+.list-elements {
+  color: white;
+  margin-right: 20px;
+}
+.unOrder-list-container {
+  list-style-type: none;
+  margin-right: 20px;
+}
+.employment-heading {
+  color: white;
+}
+.salary-heading {
+  color: white;
+}

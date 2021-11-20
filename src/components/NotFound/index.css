@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  height: 100vh;
 }
 .not-found-image {
   width: 400px;
@@ -12,14 +12,14 @@
 .not-found-heading {
   font-family: 'Roboto';
   font-size: 50px;
-  color: white;
+  color: black;
   text-align: center;
   padding: 5px;
 }
 .not-found-paragraph {
   font-family: 'Roboto';
   font-size: 20px;
-  color: white;
+  color: black;
   text-align: center;
   padding: 5px;
 }
