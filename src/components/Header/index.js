@@ -19,11 +19,13 @@ const Header = props => {
       <nav className="nav-header">
         <div className="nav-content">
           <div className="nav-bar-mobile-container">
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
-              alt=" website logo"
-              className="website-logo-image-mobile"
-            />
+            <Link to="/">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
+                alt=" website logo"
+                className="website-logo-image-mobile"
+              />
+            </Link>
             <Link to="/">
               <AiFillHome className="home-icon" />
             </Link>
@@ -35,30 +37,34 @@ const Header = props => {
             </Link>
           </div>
           <div className="nav-bar-desktop-container">
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
-              alt=" website logo"
-              className="website-logo-image-desktop"
-            />
+            <Link to="/">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
+                alt=" website logo"
+                className="website-logo-image-desktop"
+              />
+            </Link>
             <ul className="nav-menu">
-              <li className="nav-menu-item">
+              <li className="nav-menu-item-1">
                 <Link to="/" className="home">
                   Home
                 </Link>
               </li>
-              <li className="nav-menu-item">
+              <li className="nav-menu-item-3">
                 <Link to="/jobs" className="jobs">
                   Jobs
                 </Link>
               </li>
+              <li className="nav-menu-item-2">
+                <button
+                  type="button"
+                  className="logout-desktop-btn"
+                  onClick={onClickLogout}
+                >
+                  Logout
+                </button>
+              </li>
             </ul>
-            <button
-              type="button"
-              className="logout-desktop-btn"
-              onClick={onClickLogout}
-            >
-              Logout
-            </button>
           </div>
         </div>
       </nav>

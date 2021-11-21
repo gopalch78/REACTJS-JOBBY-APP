@@ -4,6 +4,8 @@ import Loader from 'react-loader-spinner'
 
 import Cookies from 'js-cookie'
 
+import {BsSearch} from 'react-icons/bs'
+
 import JobItem from '../JobItem'
 
 import Header from '../Header'
@@ -142,7 +144,6 @@ class Jobs extends Component {
     const responseJobDetails = await fetch(jobApiUrl, optionsJobDetails)
     if (responseJobDetails.ok === true) {
       const fetchedJobData = await responseJobDetails.json()
-      console.log(fetchedJobData)
       const updatedJobData = fetchedJobData.jobs.map(each => ({
         title: each.title,
         rating: each.rating,
@@ -168,9 +169,11 @@ class Jobs extends Component {
     const {jobsData} = this.state
     return (
       <>
-        {jobsData.map(each => (
-          <JobItem key={each.id} jobItemDetails={each} />
-        ))}
+        <ul className="render-job-item-container">
+          {jobsData.map(each => (
+            <JobItem key={each.id} jobDetails={each} />
+          ))}
+        </ul>
       </>
     )
   }
@@ -216,7 +219,7 @@ class Jobs extends Component {
               <h1 className="employment-heading">Type of Employment</h1>
               <ul className="unOrder-list-container">
                 {employmentTypesList.map(eachItem => (
-                  <li className="list-elements">
+                  <li className="list-elements" key={eachItem.employmentTypeId}>
                     <input type="checkbox" id={eachItem.employmentTypeId} />
                     <label htmlFor={eachItem.employmentTypeId}>
                       {eachItem.label}
@@ -228,7 +231,7 @@ class Jobs extends Component {
               <h1 className="salary-heading">Salary Range</h1>
               <ul className="unOrder-list-container">
                 {salaryRangesList.map(eachItem => (
-                  <li className="list-elements">
+                  <li className="list-elements" key={eachItem.salaryRangeId}>
                     <input
                       type="radio"
                       id={eachItem.salaryRangeId}
@@ -242,8 +245,16 @@ class Jobs extends Component {
               </ul>
             </div>
           </div>
-          <div className="input-job-detail-container">
-            <input type="search" />
+          <div className="jobs-container">
+            <input
+              type="search"
+              className="input-search"
+              placeholder="Search"
+            />
+            <button type="button" testid="searchButton" className="btn-search">
+              <BsSearch className="search-icon" />
+            </button>
+            <div className="each-job-item">{this.renderJobItemDetails()}</div>
           </div>
         </div>
       </div>
