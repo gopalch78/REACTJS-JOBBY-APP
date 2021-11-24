@@ -1,1 +1,135 @@
-
+.background-container {
+  width: 100%;
+  display: flex;
+  background-size: cover;
+  flex-direction: column;
+  background-color: black;
+}
+.list-container1 {
+  background-color: #272727;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  margin-left: 50px;
+  height: 130%;
+  width: 90%;
+  flex-direction: column;
+}
+.image-container1 {
+  display: flex;
+  margin-left: 200px;
+}
+.image-title-rating-container1 {
+  display: flex;
+  flex-direction: row;
+}
+.location-employ-package-container1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.company-logo {
+  height: 50px;
+  margin: 20px;
+}
+.title1 {
+  font-family: 'Roboto';
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+.rating1 {
+  font-family: 'Roboto';
+  color: white;
+  font-weight: bold;
+}
+.star1 {
+  color: #fbbf24;
+}
+.location1 {
+  font-family: 'Roboto';
+  color: white;
+  font-weight: bold;
+  margin-left: 15px;
+}
+.map1 {
+  margin-right: 5px;
+}
+.employment1 {
+  font-family: 'Roboto';
+  color: white;
+  font-weight: bold;
+  margin-right: 350px;
+}
+.briefCase1 {
+  margin-right: 5px;
+}
+.package1 {
+  font-family: 'Roboto';
+  color: white;
+  font-weight: bold;
+}
+.description1 {
+  font-family: 'Roboto';
+  color: white;
+  font-weight: normal;
+  margin-left: 10px;
+}
+.description-heading1 {
+  font-family: 'Roboto';
+  color: white;
+  font-size: 16px;
+  margin-left: 10px;
+}
+.hr-line-2 {
+  color: #cbd5e1;
+  line-height: 1px;
+  width: 1130px;
+}
+.skills-heading {
+  color: white;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.skills-ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+.skills-image-paragraph-container {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+  margin-left: 40px;
+  flex-wrap: wrap;
+  width: 90%;
+}
+.skills-image {
+  padding-right: 15px;
+}
+.skills-paragraph {
+  color: white;
+  padding-top: 20px;
+}
+.skills-li {
+  display: flex;
+  flex-wrap: wrap;
+}
+.life-heading {
+  color: white;
+  font-size: 20px;
+}
+.life-paragraph {
+  color: white;
+  font-size: 25px;
+}
+.life-container {
+  display: flex;
+  flex-direction: row;
+}
+.company-website-url {
+  margin-left: 1000px;
+}

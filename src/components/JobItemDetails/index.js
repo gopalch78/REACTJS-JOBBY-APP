@@ -23,8 +23,9 @@ const apiStatusConstants = {
 
 class JobItemDetails extends Component {
   state = {
-    jobItemData: {},
+    jobItemData: [],
     apiStatus: apiStatusConstants.initial,
+    similarJobsData: [],
   }
 
   componentDidMount() {
@@ -67,10 +68,21 @@ class JobItemDetails extends Component {
         location: each.location,
         title: each.title,
       }))
-      console.log(updatedJobItemDetailsData)
+      const similarUpdatedData = fetchedJobItemDetailsData.similar_jobs.map(
+        eachItem => ({
+          sCompanyLogoUrl: eachItem.company_logo_url,
+          sEmploymentType: eachItem.employment_type,
+          id: eachItem.id,
+          sJobDescription: eachItem.job_description,
+          sLocation: eachItem.location,
+          sRating: eachItem.rating,
+          sTitle: eachItem.title,
+        }),
+      )
       this.setState({
         apiStatus: apiStatusConstants.success,
         jobItemData: updatedJobItemDetailsData,
+        similarJobsData: similarUpdatedData,
       })
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
@@ -90,7 +102,7 @@ class JobItemDetails extends Component {
   )
 
   renderJobItemDetails = () => {
-    const {jobItemData} = this.state
+    const {jobItemData, similarJobsData} = this.state
     const {
       companyLogoUrl,
       companyWebsiteUrl,
@@ -103,57 +115,110 @@ class JobItemDetails extends Component {
       title,
       skills,
     } = jobItemData[0]
-    return (
-      <div className="list-container">
-        <div className="image-title-rating-container">
-          <div className="image-container">
-            <img
-              src={companyLogoUrl}
-              alt=" job details company logo"
-              className="company-logo"
-            />
-          </div>
-          <div className="title-rating-container">
-            <h1 className="title">{title}</h1>
-            <p className="rating">
-              <AiFillStar className="star" />
-              {rating}
-            </p>
-          </div>
-        </div>
-        <div className="location-employ-package-container">
-          <p className="location">
-            <FaMapMarkerAlt className="map" />
-            {location}
-          </p>
-          <p className="employment">
-            <BsFillBriefcaseFill className="briefCase" />
-            {employmentType}
-          </p>
+    const {
+      sCompanyLogoUrl,
+      sEmploymentType,
+      sJobDescription,
+      sLocation,
+      sRating,
+      sTitle,
+    } = similarJobsData[0]
 
-          <p className="package">{packagePerAnnum}</p>
-        </div>
-        <hr className="hr-line-1" />
-        <h1 className="description-heading">
-          Description
-          <a href={companyWebsiteUrl}>
-            Visit <BiLinkExternal />
-          </a>
-        </h1>
-        <p className="description">{jobDescription}</p>
-        <h1>Skills</h1>
-        <ul>
-          {skills.map(each => (
-            <li>
-              <img src={each.imageUrl} alt={each.name} />
-              <p>{each.name}</p>
-            </li>
-          ))}
-        </ul>
-        <h1>Life at Company</h1>
-        <div>
-          <p>{lifeAtCompany.description}</p>
-          <img src={lifeAtCompany.companyImageUrl} alt=" life at company" />
+    return (
+      <div className="background-container">
+        <div className="list-container1">
+          <div className="image-title-rating-container1">
+            <div className="image-container1">
+              <img
+                src={companyLogoUrl}
+                alt=" job details company logo"
+                className="company-logo"
+              />
+            </div>
+            <div className="title-rating-container1">
+              <h1 className="title1">{title}</h1>
+              <p className="rating1">
+                <AiFillStar className="star1" />
+                {rating}
+              </p>
+            </div>
+          </div>
+          <div className="location-employ-package-container1">
+            <p className="location1">
+              <FaMapMarkerAlt className="map1" />
+              {location}
+            </p>
+            <p className="employment1">
+              <BsFillBriefcaseFill className="briefCase1" />
+              {employmentType}
+            </p>
+
+            <p className="package1">{packagePerAnnum}</p>
+          </div>
+          <hr className="hr-line-2" />
+          <h1 className="description-heading1">
+            Description
+            <a href={companyWebsiteUrl} className="company-website-url">
+              Visit <BiLinkExternal />
+            </a>
+          </h1>
+          <p className="description1">{jobDescription}</p>
+          <h1 className="skills-heading">Skills</h1>
+          <ul className="skills-ul">
+            {skills.map(each => (
+              <li className="skills-li">
+                <div className="skills-image-paragraph-container">
+                  <img
+                    src={each.imageUrl}
+                    alt={each.name}
+                    className="skills-image"
+                  />
+                  <p className="skills-paragraph">{each.name}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <h1 className="life-heading">Life at Company</h1>
+          <div className="life-container">
+            <p className="life-paragraph">{lifeAtCompany.description}</p>
+            <img src={lifeAtCompany.companyImageUrl} alt=" life at company" />
+          </div>
+          <h1>Similar Jobs</h1>
+          <div>
+            <ul>
+              {similarJobsData.map(each => (
+                <li key={each.id}>
+                  <div>
+                    <div>
+                      <img
+                        src={sCompanyLogoUrl}
+                        alt="similar job company logo "
+                        className="similar-company-logo"
+                      />
+                    </div>
+                    <div>
+                      <h1 className="similar-title">{sTitle}</h1>
+                      <p className="similar-rating">
+                        <AiFillStar className="star1" />
+                        {sRating}
+                      </p>
+                    </div>
+                  </div>
+                  <p>{sJobDescription}</p>
+                  <div>
+                    <p className="similar-location">
+                      <FaMapMarkerAlt className="map1" />
+                      {sLocation}
+                    </p>
+                    <p className="similar-employment">
+                      <BsFillBriefcaseFill className="briefCase1" />
+                      {sEmploymentType}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     )

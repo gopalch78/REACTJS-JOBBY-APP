@@ -57,11 +57,20 @@ const salaryRangesList = [
 ]
 
 class Jobs extends Component {
-  state = {profileData: {}, apiStatus: apiStatusConstants.initial, jobsData: []}
+  state = {
+    profileData: {},
+    apiStatus: apiStatusConstants.initial,
+    jobsData: [],
+    searchInput: ' ',
+  }
 
   componentDidMount() {
     this.getProfileData()
     this.getJobDetails()
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
   }
 
   getProfileData = async () => {
@@ -136,7 +145,7 @@ class Jobs extends Component {
   getJobDetails = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
-    const jobApiUrl = 'https://apis.ccbp.in/jobs'
+    const jobApiUrl = 'https://apis.ccbp.in/jobs/'
     const optionsJobDetails = {
       headers: {Authorization: `Bearer ${jwtToken}`},
       method: 'GET',
@@ -166,11 +175,15 @@ class Jobs extends Component {
   }
 
   renderJobItemDetails = () => {
-    const {jobsData} = this.state
+    const {jobsData, searchInput} = this.state
+    const searchResults = jobsData.filter(eachItem =>
+      eachItem.title.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+
     return (
       <>
         <ul className="render-job-item-container">
-          {jobsData.map(each => (
+          {searchResults.map(each => (
             <JobItem key={each.id} jobDetails={each} />
           ))}
         </ul>
@@ -205,7 +218,14 @@ class Jobs extends Component {
     }
   }
 
+  onCheckBox = () => {
+    const {jobsData, employmentType} = this.state
+    jobsData.filter(eachItem => eachItem.employmentTypeId === employmentType)
+  }
+
   render() {
+    const {searchInput} = this.state
+
     return (
       <div className="main-container">
         <div className="render-profile">
@@ -250,6 +270,8 @@ class Jobs extends Component {
               type="search"
               className="input-search"
               placeholder="Search"
+              value={searchInput}
+              onChange={this.onChangeSearchInput}
             />
             <button type="button" testid="searchButton" className="btn-search">
               <BsSearch className="search-icon" />
