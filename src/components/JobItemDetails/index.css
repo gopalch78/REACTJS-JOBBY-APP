@@ -133,3 +133,6 @@
 .company-website-url {
   margin-left: 1000px;
 }
+.similar-container {
+  display: flex;
+}

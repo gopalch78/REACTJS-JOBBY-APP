@@ -74,3 +74,18 @@
   height: 30px;
   width: 60px;
 }
+.retry-button {
+  color: white;
+  background-color: #4f46e5;
+
+  padding: 5px;
+  height: 30px;
+  width: 110px;
+  border-radius: 5px;
+}
+.retry-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}

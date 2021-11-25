@@ -12,6 +12,7 @@ import {FaMapMarkerAlt} from 'react-icons/fa'
 
 import {BiLinkExternal} from 'react-icons/bi'
 
+import SimilarJobs from '../SimilarJobs'
 import './index.css'
 
 const apiStatusConstants = {
@@ -89,9 +90,21 @@ class JobItemDetails extends Component {
     }
   }
 
+  onRetry = () => {
+    this.getJobItemDetails()
+  }
+
   renderFailureView = () => (
     <div>
-      <button type="button">Retry</button>
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png "
+        alt="failure view"
+      />
+      <h1>Oops! Something Went Wrong </h1>
+      <p>we cannot seem to find the page you are looking for</p>
+      <button type="button" onClick={this.onRetry}>
+        Retry
+      </button>
     </div>
   )
 
@@ -115,14 +128,6 @@ class JobItemDetails extends Component {
       title,
       skills,
     } = jobItemData[0]
-    const {
-      sCompanyLogoUrl,
-      sEmploymentType,
-      sJobDescription,
-      sLocation,
-      sRating,
-      sTitle,
-    } = similarJobsData[0]
 
     return (
       <div className="background-container">
@@ -183,42 +188,14 @@ class JobItemDetails extends Component {
             <p className="life-paragraph">{lifeAtCompany.description}</p>
             <img src={lifeAtCompany.companyImageUrl} alt=" life at company" />
           </div>
-          <h1>Similar Jobs</h1>
-          <div>
-            <ul>
-              {similarJobsData.map(each => (
-                <li key={each.id}>
-                  <div>
-                    <div>
-                      <img
-                        src={sCompanyLogoUrl}
-                        alt="similar job company logo "
-                        className="similar-company-logo"
-                      />
-                    </div>
-                    <div>
-                      <h1 className="similar-title">{sTitle}</h1>
-                      <p className="similar-rating">
-                        <AiFillStar className="star1" />
-                        {sRating}
-                      </p>
-                    </div>
-                  </div>
-                  <p>{sJobDescription}</p>
-                  <div>
-                    <p className="similar-location">
-                      <FaMapMarkerAlt className="map1" />
-                      {sLocation}
-                    </p>
-                    <p className="similar-employment">
-                      <BsFillBriefcaseFill className="briefCase1" />
-                      {sEmploymentType}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+        </div>
+        <h1>Similar Jobs</h1>
+        <div className="similar-container">
+          <ul>
+            {similarJobsData.map(eachJob => (
+              <SimilarJobs key={eachJob.id} similarJobDetails={eachJob} />
+            ))}
+          </ul>
         </div>
       </div>
     )
