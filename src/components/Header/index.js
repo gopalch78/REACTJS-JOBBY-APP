@@ -9,10 +9,19 @@ import {FiLogOut} from 'react-icons/fi'
 import './index.css'
 
 const Header = props => {
+  const {history} = props
+
   const onClickLogout = () => {
-    const {history} = props
     Cookies.remove('jwt_token')
     history.replace('/login')
+  }
+
+  const gotoHome = () => {
+    history.push('/')
+  }
+
+  const gotoJobs = () => {
+    history.push('/jobs')
   }
   return (
     <>
@@ -22,15 +31,18 @@ const Header = props => {
             <Link to="/">
               <img
                 src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
-                alt=" website logo"
+                alt="website logo"
                 className="website-logo-image-mobile"
               />
             </Link>
             <Link to="/">
-              <AiFillHome className="home-icon" />
+              <AiFillHome className="home-icon" onClick={gotoHome} />
             </Link>
             <Link to="/jobs">
-              <BsFillBriefcaseFill className="briefcase-icon" />
+              <BsFillBriefcaseFill
+                className="briefcase-icon"
+                onClick={gotoJobs}
+              />
             </Link>
             <Link to="/login">
               <FiLogOut onClick={onClickLogout} className="logout-icon" />

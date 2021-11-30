@@ -12,7 +12,10 @@ import {FaMapMarkerAlt} from 'react-icons/fa'
 
 import {BiLinkExternal} from 'react-icons/bi'
 
+import Header from '../Header'
+
 import SimilarJobs from '../SimilarJobs'
+
 import './index.css'
 
 const apiStatusConstants = {
@@ -116,89 +119,93 @@ class JobItemDetails extends Component {
 
   renderJobItemDetails = () => {
     const {jobItemData, similarJobsData} = this.state
-    const {
-      companyLogoUrl,
-      companyWebsiteUrl,
-      employmentType,
-      jobDescription,
-      lifeAtCompany,
-      rating,
-      packagePerAnnum,
-      location,
-      title,
-      skills,
-    } = jobItemData[0]
+    if (jobItemData.length > 0) {
+      const {
+        companyLogoUrl,
+        companyWebsiteUrl,
+        employmentType,
+        jobDescription,
+        lifeAtCompany,
+        rating,
+        packagePerAnnum,
+        location,
+        title,
+        skills,
+      } = jobItemData[0]
 
-    return (
-      <div className="background-container">
-        <div className="list-container1">
-          <div className="image-title-rating-container1">
-            <div className="image-container1">
-              <img
-                src={companyLogoUrl}
-                alt=" job details company logo"
-                className="company-logo"
-              />
+      return (
+        <div className="background-container">
+          <div className="list-container1">
+            <div className="image-title-rating-container1">
+              <div className="image-container1">
+                <img
+                  src={companyLogoUrl}
+                  alt=" job details company logo"
+                  className="company-logo"
+                />
+              </div>
+              <div className="title-rating-container1">
+                <h1 className="title1">{title}</h1>
+                <p className="rating1">
+                  <AiFillStar className="star1" />
+                  {rating}
+                </p>
+              </div>
             </div>
-            <div className="title-rating-container1">
-              <h1 className="title1">{title}</h1>
-              <p className="rating1">
-                <AiFillStar className="star1" />
-                {rating}
+            <div className="location-employ-package-container1">
+              <p className="location1">
+                <FaMapMarkerAlt className="map1" />
+                {location}
               </p>
-            </div>
-          </div>
-          <div className="location-employ-package-container1">
-            <p className="location1">
-              <FaMapMarkerAlt className="map1" />
-              {location}
-            </p>
-            <p className="employment1">
-              <BsFillBriefcaseFill className="briefCase1" />
-              {employmentType}
-            </p>
+              <p className="employment1">
+                <BsFillBriefcaseFill className="briefCase1" />
+                {employmentType}
+              </p>
 
-            <p className="package1">{packagePerAnnum}</p>
-          </div>
-          <hr className="hr-line-2" />
-          <h1 className="description-heading1">
-            Description
+              <p className="package1">{packagePerAnnum}</p>
+            </div>
+            <hr className="hr-line-2" />
+            <h1 className="description-heading1">Description </h1>
             <a href={companyWebsiteUrl} className="company-website-url">
               Visit <BiLinkExternal />
             </a>
-          </h1>
-          <p className="description1">{jobDescription}</p>
-          <h1 className="skills-heading">Skills</h1>
-          <ul className="skills-ul">
-            {skills.map(each => (
-              <li className="skills-li">
-                <div className="skills-image-paragraph-container">
-                  <img
-                    src={each.imageUrl}
-                    alt={each.name}
-                    className="skills-image"
-                  />
-                  <p className="skills-paragraph">{each.name}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <h1 className="life-heading">Life at Company</h1>
-          <div className="life-container">
-            <p className="life-paragraph">{lifeAtCompany.description}</p>
-            <img src={lifeAtCompany.companyImageUrl} alt=" life at company" />
+
+            <p className="description1">{jobDescription}</p>
+            <h1 className="skills-heading">Skills</h1>
+            <ul className="skills-ul">
+              {skills.map(each => (
+                <li className="skills-li" key={each.name}>
+                  <div className="skills-image-paragraph-container">
+                    <img
+                      src={each.imageUrl}
+                      alt={each.name}
+                      key={each.name}
+                      className="skills-image"
+                    />
+                    <p className="skills-paragraph">{each.name}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <h1 className="life-heading">Life at Company</h1>
+            <div className="life-container">
+              <p className="life-paragraph">{lifeAtCompany.description}</p>
+              <img src={lifeAtCompany.companyImageUrl} alt=" life at company" />
+            </div>
+          </div>
+          <h1>Similar Jobs</h1>
+          <div className="similar-container">
+            <ul>
+              {similarJobsData.map(eachJob => (
+                <SimilarJobs key={eachJob.id} similarJobDetails={eachJob} />
+              ))}
+            </ul>
           </div>
         </div>
-        <h1>Similar Jobs</h1>
-        <div className="similar-container">
-          <ul>
-            {similarJobsData.map(eachJob => (
-              <SimilarJobs key={eachJob.id} similarJobDetails={eachJob} />
-            ))}
-          </ul>
-        </div>
-      </div>
-    )
+      )
+    }
+
+    return null
   }
 
   renderJobDetails = () => {
@@ -216,7 +223,12 @@ class JobItemDetails extends Component {
   }
 
   render() {
-    return <div>{this.renderJobDetails()}</div>
+    return (
+      <>
+        <Header />
+        <div>{this.renderJobDetails()}</div>
+      </>
+    )
   }
 }
 export default JobItemDetails

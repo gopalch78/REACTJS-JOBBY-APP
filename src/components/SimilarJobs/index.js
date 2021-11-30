@@ -35,6 +35,7 @@ const SimilarJobs = props => {
             </p>
           </div>
         </div>
+        <h1>Description</h1>
         <p>{sJobDescription}</p>
         <div>
           <p className="similar-location">

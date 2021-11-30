@@ -1,0 +1,14 @@
+.list-elements {
+  color: white;
+  margin-right: 20px;
+}
+.unOrder-list-container {
+  list-style-type: none;
+  margin-right: 20px;
+}
+.employment-heading {
+  color: white;
+}
+.salary-heading {
+  color: white;
+}

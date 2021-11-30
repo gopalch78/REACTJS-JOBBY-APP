@@ -32,20 +32,6 @@
   line-height: 10px;
   margin-left: 80px;
 }
-.list-elements {
-  color: white;
-  margin-right: 20px;
-}
-.unOrder-list-container {
-  list-style-type: none;
-  margin-right: 20px;
-}
-.employment-heading {
-  color: white;
-}
-.salary-heading {
-  color: white;
-}
 
 .render-job-item-container {
   width: 100%;
@@ -88,4 +74,16 @@
   justify-content: center;
   flex-direction: row;
   align-items: center;
+}
+.failure-heading {
+  color: white;
+}
+.failure-paragraph {
+  color: white;
+}
+.no-job-paragraph {
+  color: white;
+}
+.no-job-heading {
+  color: white;
 }
