@@ -22,6 +22,13 @@ const apiStatusConstants = {
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
 }
+
+const jobApiStatusConstants = {
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  inProgress: 'IN_PROGRESS',
+}
 const employmentTypesList = [
   {
     label: 'Full Time',
@@ -64,8 +71,9 @@ class Jobs extends Component {
   state = {
     profileData: {},
     apiStatus: apiStatusConstants.initial,
+    jobApiStatus: jobApiStatusConstants.initial,
     jobsData: [],
-    searchInput: ' ',
+    searchInput: [],
     employmentType: '',
     salaryValue: '',
   }
@@ -175,9 +183,9 @@ class Jobs extends Component {
   }
 
   getJobDetails = async () => {
-    this.setState({apiStatus: apiStatusConstants.inProgress})
+    this.setState({jobApiStatus: apiStatusConstants.inProgress})
+    const {salaryValue, searchInput, employmentType} = this.state
 
-    const {employmentType, salaryValue, searchInput} = this.state
     const jobApiUrl = `https://apis.ccbp.in/jobs?employment_type=${employmentType}&minimum_package=${salaryValue}&search=${searchInput}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -202,24 +210,22 @@ class Jobs extends Component {
       }))
       this.setState({
         jobsData: updatedJobData,
-        apiStatus: apiStatusConstants.success,
+        jobApiStatus: jobApiStatusConstants.success,
       })
     } else {
       this.setState({
-        apiStatus: apiStatusConstants.failure,
+        jobApiStatus: jobApiStatusConstants.failure,
       })
     }
   }
 
   renderJobItemDetails = () => {
-    const {jobsData, searchInput} = this.state
-    const searchData = jobsData.filter(eachData =>
-      eachData.title.toLowerCase().includes(searchInput.toLowerCase()),
-    )
+    const {jobsData} = this.state
+
     return (
       <div>
         <ul className="render-job-item-container">
-          {searchData.map(eachItem => (
+          {jobsData.map(eachItem => (
             <JobItem key={eachItem.id} jobDetails={eachItem} />
           ))}
         </ul>
@@ -260,16 +266,16 @@ class Jobs extends Component {
   )
 
   renderJobsDetails = () => {
-    const {apiStatus, jobsData} = this.state
-    switch (apiStatus) {
-      case apiStatusConstants.inProgress:
+    const {jobApiStatus, jobsData} = this.state
+    switch (jobApiStatus) {
+      case jobApiStatusConstants.inProgress:
         return this.renderLoadingView()
-      case apiStatusConstants.success:
+      case jobApiStatusConstants.success:
         if (jobsData.length === 0) {
           return this.renderNoJobView()
         }
         return this.renderJobItemDetails()
-      case apiStatusConstants.failure:
+      case jobApiStatusConstants.failure:
         return this.renderJobFailureView()
       default:
         return null

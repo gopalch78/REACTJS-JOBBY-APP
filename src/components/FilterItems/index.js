@@ -1,12 +1,24 @@
 import './index.css'
 
+let listArray = []
+
 const FilterItems = props => {
   const {filterTypeofEmployment, filterTypeofSalary} = props
-  const ischecked = true
 
   const onChangeFilterTypeofEmployment = event => {
-    filterTypeofEmployment(event.target.value)
+    const checkValueIs = event.target.value
+    const checkStatusIs = event.target.checked
+    if (checkStatusIs) {
+      listArray.push(checkValueIs)
+    } else {
+      const updatedValues = listArray.filter(each => each !== checkValueIs)
+      listArray = updatedValues
+    }
+    const stringIs = listArray.join()
+
+    filterTypeofEmployment(stringIs)
   }
+
   const onChangeFilterTypeofSalary = event => {
     filterTypeofSalary(event.target.value)
   }
@@ -21,7 +33,6 @@ const FilterItems = props => {
           <li className="list-elements" key={eachItem.employmentTypeId}>
             <input
               type="checkbox"
-              onChecked={ischecked}
               id={eachItem.employmentTypeId}
               onChange={onChangeFilterTypeofEmployment}
               value={eachItem.employmentTypeId}
@@ -39,8 +50,8 @@ const FilterItems = props => {
               type="radio"
               id={eachItem.salaryRangeId}
               name="option"
-              onChecked={ischecked}
               onChange={onChangeFilterTypeofSalary}
+              value={eachItem.salaryRangeId}
             />
             <label htmlFor={eachItem.salaryRangeId}>{eachItem.label}</label>
           </li>
